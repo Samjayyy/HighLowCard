@@ -1,0 +1,59 @@
+  .deck {
+    font-size: 20px;
+    font-family: "arial";
+    font-weight: bold;
+    padding: 2%;
+    background: rgb(15, 200, 115);
+    color: black;
+    border-radius: 45px;
+    margin:auto;
+  }
+
+  .gamecard {
+    color: black;
+    background:transparent;
+    border-radius: 6px;
+    border:0px;
+    margin: auto;
+    user-select: none;
+    cursor: pointer;
+  }
+  .gamecard img{
+    max-width:100%;
+    max-height:100%;
+  }
+
+  .gamecard.previous {
+    height:80%;
+  }
+
+  @keyframes pop {
+    from {transform: scale(1.5);}
+    to {transform: scale(1);}
+  }
+
+  .actions button img {
+    max-height:100%;
+    max-width:50%;
+  }
+
+  .btn-img {
+    border:1px solid;
+  }
+  .btn-img:hover {
+    background-color: #AAA;
+  }
+  
+  .show {
+    animation-name: pop;
+    animation-duration: 0.5s;
+  }
+
+  .correct {
+    color:green;
+  }
+
+  .wrong{
+    color:red;
+  }
+  

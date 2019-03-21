@@ -1,0 +1,72 @@
+<div class="gameboard container-fluid">
+    <div class="row">
+        <div class="col-1">
+            <a class="navbar-brand" href="" onclick="return confirm('Shuffle game?')">
+                <img src="./assets/icons/faithtoken/card-random.png" width="50" height="50" alt="Shuffle cards">
+            </a>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    Rules
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span class="correct">Correct</span> = +(number of values that could
+                        have been wrong)</li>
+                    <li class="list-group-item"><span class="wrong">Wrong</span> = -(number of values that could have
+                        been right + 1)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    Score
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Total: <span
+                            [attr.class]="this.currentScore<0?'wrong':'correct'">{{this.currentScore}}</span></li>
+                    <li class="list-group-item">Last Guess: <span
+                            [attr.class]="this.lastScore<0?'wrong':'correct'">{{this.lastScore}}</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card">
+                <div class="card-header">
+                    Game
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{currentCard}} guesses</li>
+                    <li class="list-group-item">{{this.deck.length - currentCard - 1}} cards left</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row deck" *ngIf="currentCard>=0 && currentCard < this.deck.length">
+        <div class="col-3 gamecard previous">
+            <div *ngIf="currentCard > 0">
+                <img [attr.src]="'./assets/icons/cards/'+ this.deck[this.currentCard-1].getFileName()" />
+            </div>
+        </div>
+        <div class="col-4 gamecard current show">
+            <img [attr.src]="'./assets/icons/cards/'+ this.deck[this.currentCard].getFileName()" />
+        </div>
+        <div class="col-4 actions">
+            <div class="d-flex flex-column" *ngIf="currentCard+1 < this.deck.length">
+                <button type="button" class="btn btn-lg btn-block btn-img" (click)="this.guess(this.higher)"><img
+                        src="./assets/icons/delapouite/up-card.png" />
+                    (<span class="correct">+{{this.deck[currentCard].value}}</span>, <span
+                        class="wrong">-{{14-this.deck[currentCard].value}}</span>)
+                </button>
+                <button type="button" class="btn btn-lg btn-block btn-dark" (click)="this.guess(this.equal)">GELIJK
+                    (<span style="color:green;">+12</span>, <span class="wrong">-2</span>)</button>
+                <button type="button" class="btn btn-lg btn-block btn-img" (click)="this.guess(this.lower)"><img
+                        src="./assets/icons/delapouite/down-card.png" />
+                    (<span class="correct">+{{14-this.deck[currentCard].value}}</span>, <span
+                        class="wrong">-{{this.deck[currentCard].value}}</span>)
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
